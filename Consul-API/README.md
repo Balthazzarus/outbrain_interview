@@ -3,7 +3,7 @@
 
 ### Creating your repository 
 
-Please mirror this git repo using the instructions [here](https://help.github.com/articles/duplicating-a-repository). Then clone it locally. 
+Please mirror this git repo using the instructions [here](https://help.github.com/articles/duplicating-a-repository). Then clone it locally. (DONE)
 (**Please DO NOT fork the repo**)
 
 ### Exercise
