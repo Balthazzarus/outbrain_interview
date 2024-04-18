@@ -87,42 +87,53 @@ def get_network_info():
             network_info[interface_name] = address_info
     return network_info
 
+# Function to get network load information
+def get_network_load():
+    net_stats = psutil.net_io_counters(pernic=True, nowrap=True)
+    network_load = {}
+    for interface, stats in net_stats.items():
+        if interface != "lo":
+            net_in = round(stats.bytes_recv / (1024 * 1024), 3)  # Convert bytes to MB
+            net_out = round(stats.bytes_sent / (1024 * 1024), 3)  # Convert bytes to MB
+            network_load[interface] = {"Network Load in": f"{net_in} MB/s", "Network Load out": f"{net_out} MB/s"}
+    return network_load
+
 # Function calculate GB and round it up
 def bytes_to_gb(bytes_value):
-    """
-    Convert bytes to gigabytes (GB) and round up to the nearest whole number.
-    """
     gb_value = bytes_value / (1024 ** 3)  # 1 GB = 1024^3 bytes
-    return round(gb_value)
+    return round(gb_value,2)
 
-# Function to fetch system information
+# Function to get system information
 def get_system_info():
-    # Get CPU information
     cpu_info = {
-        "cpu_count": psutil.cpu_count(),
+        "Total": psutil.cpu_count(),
+        "Usage Load %" : psutil.cpu_percent()
     }
-    # Get memory information
+
     mem_info = {
-        "total_memory": bytes_to_gb(psutil.virtual_memory().total),
+        "Total": bytes_to_gb(psutil.virtual_memory().total),
+        "Memory Load %" : psutil.virtual_memory()[2]
     }
-     #Get disk information
+
     disk_usage = psutil.disk_usage('/')
     disk_info = {
-        "total_disk": bytes_to_gb(disk_usage.total), 
+        "Total Disk": bytes_to_gb(disk_usage.total),
+        "Disk Used" : bytes_to_gb(disk_usage.used),
+        "Disk Free" : bytes_to_gb(disk_usage.free)
     }
 
     load_avg = os.getloadavg()
 
     uptime_info = {"uptime_days": get_system_uptime()}
 
-    network_info = {"Interfaces": get_network_info()} 
+    network_info = {"Interfaces": get_network_info()}
+
+    network_load = get_network_load()
 
     os_info = {
-        "os": {
             "platform": platform.system(),
             "release" : platform.release(),
             "build" : platform.version()
-        }
     }
 
     # Combine all information
@@ -135,7 +146,8 @@ def get_system_info():
         "Load Avarage" : {"1 minutes" : load_avg[0],
                           "5 minutes" : load_avg[1],
                           "15 minutes" : load_avg[2]},
-        "Network Info" : network_info
+        "Network Info" : network_info,
+        "Network Load" : network_load
     }
 
     return system_info
