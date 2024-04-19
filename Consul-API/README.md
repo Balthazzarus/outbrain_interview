@@ -70,10 +70,10 @@ Bonus:
 
 #### summary
 This endpoint will sample the Consul API to get the following information about the cluster:
- - Number of registered nodes
- - Number of registered services
- - Cluster Leader IP and port
- - The internal protocol version used by Consul
+ - Number of registered nodes - http://192.168.50.15:8500/v1/status/peers / http://192.168.50.15:8500/v1/catalog/nodes
+ - Number of registered services - http://192.168.50.15:8500/v1/catalog/services
+ - Cluster Leader IP and port -  http://192.168.50.15:8500/v1/status/leader
+ - The internal protocol version used by Consul - http://192.168.50.15:8500/v1/agent/self look for protocol_version
 
 ~~~
 {
@@ -113,7 +113,7 @@ This endpoint will sample the Consul API to get the list of registered nodes in 
 
 #### systemInfo
 This endpoint will expose metrics taken from the docker container. Here we wish to see which system metrics you think are relevant when it comes to debugging OS.
-The result must include the number of cores and amount of memory that the VM has. Try to come up with at least 5 more system metrics.
+The result must include the number of cores and amount of memory that the VM (Docker Container) has. Try to come up with at least 5 more system metrics.
 Result should be in the following format: 
 
 ~~~

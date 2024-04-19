@@ -1,0 +1,21 @@
+1. Install VirtualBox 6.1:
+Download and install VirtualBox 6.1 following the appropriate steps for your operating system.
+2. Install Vagrant:
+Download and install Vagrant following the appropriate steps for your operating system.
+3. Install Vagrant Plugin:
+Open your command-line interface (CLI).
+Execute the following command to install the Vagrant plugin for customizing disk size:
+'vagrant plugin install vagrant-disksize'
+4. Download Vagrantfile:
+Download the Vagrantfile provided to your workstation.
+5. Navigate to Directory:
+Open your CLI.
+Use the cd command to navigate to the directory where you saved the Vagrantfile.
+6. Bring Up the VM:
+In your CLI, execute the following command to bring up the VM with the specified specifications and configurations:
+'vagrant up'
+
+Note:
+The Vagrantfile contains specifications for the VM, including CPU, memory, disk size, and application installations.
+If you need to customize the configurations, you can modify the Vagrantfile, but it's not recommended unless you're familiar with Vagrant and its configuration syntax.
+By following these steps, you should have VirtualBox, Vagrant, and the required plugin installed, and your VM should be up and running with the specified specifications and applications installed and configured.
