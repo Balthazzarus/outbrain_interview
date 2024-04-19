@@ -1,0 +1,7 @@
+1. Install Docker version 20.10.21
+2. Execute the following command to build the container from the dockerfile:
+'docker build -t <containername> .'
+3. Execute the following command to run the container : 
+'docker run -p 8000:8000 <containername>'
+
+Now your docker container is running exposing port 8000 with mapping 8000 to your localhost.
