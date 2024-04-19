@@ -1,0 +1,12 @@
+Example for quering the api-service application:
+* To query the status of the Consul Cluster use the following endpoint:
+http://127.0.0.1:8000/v1/api/consulCluster/status
+
+* To query who is the cluster known leader:
+http://127.0.0.1:8000/v1/api/consulCluster/summary
+
+* To query the registered nodes in the cluster:
+http://127.0.0.1:8000/v1/api/consulCluster/members
+
+* To query the metrics of the container :
+http://127.0.0.1:8000/v1/api/consulCluster/systemInfo
