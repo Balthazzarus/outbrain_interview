@@ -106,10 +106,31 @@ SERVICE_EOF
   }
   }
 UI_EOF
+sudo cat > /etc/api-service.json <<API_EOF
+{
+  "service": {
+    "id": "api-service",
+    "name": "api-service",
+    "address": "192.168.50.21",
+    "port": 8000,
+    "tags": ["web", "api"],
+    "checks": [
+      {
+        "name": "HTTP Check",
+        "http": "http://192.168.50.21:8000/v1/api/consulCluster/systemInfo",
+        "interval": "10s",
+        "status": "critical"
+      }
+    ]
+  }
+}
+API_EOF
+  
   # Reload systemd daemon and start Consul
   sudo systemctl daemon-reload
   sudo systemctl start consul
   sudo systemctl enable consul
+  consul services register /etc/api-service.json
 SHELL
 
 end
